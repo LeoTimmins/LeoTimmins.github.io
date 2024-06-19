@@ -1,3 +1,7 @@
+:root{
+  --engineer: rgb(242, 255, 189);
+}
+
 body {
     font-family: sans-serif;
     margin: 0;
