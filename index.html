@@ -14,15 +14,15 @@
 
   <input type="search" id="search-bar" placeholder="Search Student" spellcheck="false">
   <ul class="key">
-    <li><span class="engineering-square"></span> Engineering</li>
-    <li><span class="medicine-square"></span> Medicine</li>
-    <li><span class="business-square"></span> Business</li>
-    <li><span class="law-square"></span> Law</li>
-    <li><span class="science-square"></span> Science</li>
-    <li><span class="misc-square"></span> Misc</li>
+    <li onclick="filterStudents('engineer')"><span class="engineering-square"></span> Engineering</li>
+    <li onclick="filterStudents('medicine')"><span class="medicine-square"></span> Medicine</li>
+    <li onclick="filterStudents('business')"><span class="business-square"></span> Business</li>
+    <li onclick="filterStudents('law')"><span class="law-square"></span> Law</li>
+    <li onclick="filterStudents('science')"><span class="science-square"></span> Science</li>
+    <li onclick="filterStudents('miscellaneous')"><span class="misc-square"></span> Misc</li>
   </ul>
   <ul id="university-list">
-    <li>
+    <li class="uni_li" id="uni_uwa">
       <h2>UWA</h2>
       <ul>
         <li id="miscellaneous">Adam Yngstrom</li>
@@ -52,7 +52,7 @@
       </ul>
       
     </li>
-    <li>
+    <li class="uni_li" id="uni_curtin">
       <h2>Curtin</h2>
       <ul>
         <li id="business">Andrew Lieu</li>
@@ -63,7 +63,7 @@
         <li>Jared Che</li>
         <li>Juliette Youngs</li>
         <li id="science">Lachlan McDonald</li>
-        <li id="engineering">Lachy Brown</li>
+        <li id="engineer">Lachy Brown</li>
         <li id="business">Lester Wong</li>
         <li id="business">Lily Wisniewski</li>
         <li id="miscellaneous">Lyla Benger</li>
@@ -77,12 +77,12 @@
         <li id="medicine">Zach Leishman</li>
       </ul>      
     </li>
-    <li>
+    <li class="uni_li" id="uni_murdoch">
       <h2>Murdoch</h2>
       <ul>
       </ul>
     </li>
-    <li>
+    <li class="uni_li" id="uni_ecu">
       <h2>ECU</h2>
       <ul>
         <li>Ben Coops</li>
@@ -91,12 +91,12 @@
         <li id="miscellaneous">Nicholas Hilliard</li>
       </ul>
     </li>
-    <li>
+    <li class="uni_li" id="uni_notre_dame">
       <h2>Notre Dame</h2>
       <ul>
       </ul>
     </li>
-    <li>
+    <li class="uni_li" id="uni_not_going">
       <h2>Not Going</h2>
       <ul>
         <li>Alex Ashton</li>
@@ -111,12 +111,13 @@
         <li>Seb Resnik</li>
       </ul>      
     </li>
-    <li>
+    <li class="uni_li" id="uni_unsure">
       <h2>Unsure</h2>
       <ul>
         <li>Alice Freeman</li>
         <li>Arnav Bansal</li>
         <li>Ben Moore</li>
+        <li>Briella Rodriguez</li>
         <li>Catelin Posa</li>
         <li>Charlotte Tan</li>
         <li>Emilie Stevens</li>
@@ -136,14 +137,13 @@
         <li>Thomas Romeo</li>
       </ul>      
     </li>
-    <li>
+    <li class="uni_li" id="uni_out_of_state">
       <h2>Out of State</h2>
       <ul>
         <li id="miscellaneous">Lyla George Strickland - Melbourne</li>
       </ul>
     </li>
   </ul>
-
-  <script   src="/script.js"></script>
 </body>
+<script   src="/script.js"></script>
 </html>

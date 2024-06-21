@@ -7,6 +7,12 @@
   --miscellaneous: rgb(189, 224, 255);
 }
 
+* {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -54,6 +60,7 @@ body {
   }
   
   #university-list li ul li {
+    cursor: default;
     margin-bottom: 5px;
     color: #333;
     flex: 1 0 33%; /* Set width for each student name box */
@@ -105,6 +112,16 @@ body {
   padding: 5px 8px 5px 8px;
   border-radius: 4%;
   color: #000000;
+  user-select: none;
+}
+
+.key li:hover{
+  background-color: rgb(243, 243, 243);
+  cursor: default;
+}
+
+.key li:active{
+  background-color: rgb(211, 210, 210);
 }
 
 /* Square Styles */
