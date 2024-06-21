@@ -1,13 +1,13 @@
 :root{
-  --engineer: rgb(231, 255, 137);
+  --engineer: rgb(242, 255, 189);
 }
 
 body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-color: #f5f5f5;
-}
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
   
   h1,h2,h3,h4,a {
     text-align: center;
@@ -29,8 +29,6 @@ body {
   
   #university-list li {
     margin-bottom: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #fff;
@@ -53,12 +51,10 @@ body {
   #university-list li ul li {
     margin-bottom: 5px;
     color: #333;
-    flex: 1 0 31.5%; /* Set width for each student name box */
+    flex: 1 0 33%; /* Set width for each student name box */
     /* Adjust the flex value (e.g., 20% or 25%) to fit more or less students per row */
     padding: 5px;
     border: 1px solid #ddd; /* Add a border to each student box */
     border-radius: 3px; /* Add rounded corners to student boxes */
     text-align: center; /* Center student names within the boxes */
-    max-width: 31.5%;
   }
-  
