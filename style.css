@@ -1,5 +1,10 @@
 :root{
-  --engineer: rgb(242, 255, 189);
+  --engineering: rgb(207, 255, 189);
+  --medicine: rgb(255, 189, 205);
+  --business: rgb(255, 221, 189);
+  --law: rgb(241, 189, 255);
+  --science: rgb(182, 255, 224);
+  --miscellaneous: rgb(189, 224, 255);
 }
 
 body {
@@ -19,7 +24,7 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
   
   #university-list {
@@ -58,3 +63,76 @@ body {
     border-radius: 3px; /* Add rounded corners to student boxes */
     text-align: center; /* Center student names within the boxes */
   }
+
+
+  #university-list li ul #engineer{
+    background-color: var(--engineering);
+  }
+
+  #university-list li ul #medicine{
+    background-color: var(--medicine);
+  }
+
+  #university-list li ul #business{
+    background-color: var(--business);
+  }
+
+  #university-list li ul #law{
+    background-color: var(--law);
+  }
+
+  #university-list li ul #science{
+    background-color: var(--science);
+  }
+
+  #university-list li ul #micsellaneous{
+    background-color: var(--micsellaneous);
+  }
+
+/* Key Styles */
+.key {
+  list-style: none;
+  margin: 10px 0 0 10px; /* Adjust margin as needed */
+  padding: 0;
+  display: flex; /* Arrange squares horizontally */
+  justify-content: center;
+}
+
+.key li {
+  margin: 0 10px 0 0; /* Adjust margin between squares as needed */
+}
+
+/* Square Styles */
+.key li span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px; /* Add margin after square */
+  border-radius: 10%;
+  position: relative;
+  top:10%;
+}
+
+.engineering-square {
+  background-color: var(--engineering);
+}
+
+.medicine-square {
+  background-color: var(--medicine);
+}
+
+.business-square {
+  background-color: var(--business);
+}
+
+.law-square {
+  background-color: var(--law);
+}
+
+.science-square {
+  background-color: var(--science);
+}
+
+.misc-square {
+  background-color: var(--miscellaneous);
+}
