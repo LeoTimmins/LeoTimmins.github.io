@@ -85,8 +85,8 @@ body {
     background-color: var(--science);
   }
 
-  #university-list li ul #micsellaneous{
-    background-color: var(--micsellaneous);
+  #university-list li ul #miscellaneous{
+    background-color: var(--miscellaneous);
   }
 
 /* Key Styles */
