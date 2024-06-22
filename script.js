@@ -1,6 +1,7 @@
 const searchBar = document.getElementById("search-bar");
     const studentList = document.getElementById("university-list").getElementsByTagName("li");
 
+
     searchBar.addEventListener("keyup", function() {
       const searchTerm = searchBar.value.toLowerCase();
       for (let i = 0; i < studentList.length; i++) {
@@ -10,6 +11,7 @@ const searchBar = document.getElementById("search-bar");
         } else {
           studentList[i].style.display = "none";
         }
+        document.getElementById("dev_info").style.display = ""
       }
     });
 
