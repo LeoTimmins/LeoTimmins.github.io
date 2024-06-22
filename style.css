@@ -185,3 +185,38 @@ body {
     color: #000000;
     padding: 2px;
 }
+
+/* Dev Notes*/
+
+#dev_notes {
+    list-style: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+  }
+  
+  #dev_notes li {
+    margin-bottom: 1em; /* Add space between versions */
+    border-bottom: 1px solid #545454; /* Add a dividing line */
+    padding-bottom: 0.5em; /* Add space below version number */
+    width: 80%;
+    max-width:400px;
+  }
+  
+  #dev_notes li a {
+    font-weight: bold; /* Make version number bold */
+    text-decoration: none; /* Remove underline from link */
+    color: #333; /* Set link color */
+    font-size: large;
+  }
+  
+  #dev_notes li ul {
+    list-style-type: none;
+    padding-top: 10px;
+    margin: 0; /* Remove default margin */
+    padding-left: 1.5em; /* Indent list items */
+  }
+  
+  #dev_notes li ul li {
+    font-size: 1em; /* Make list items slightly smaller */
+  }
+  
