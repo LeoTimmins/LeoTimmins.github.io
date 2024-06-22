@@ -12,8 +12,14 @@
   <h3>Managed by Leo Timmins</h3>
   <h4><a href="/consent.html">All data gathered with user consent</a></h4>
 
+  <ul id="experimental_features">
+    <li><h4>Optional Features</h4></li>
+    <li><input type="checkbox" class="feature_checkbox" id="ef_view_degree" checked onchange="toggle_view_degrees()"> View Degrees</li>
+    <li><input type="checkbox" class="feature_checkbox" id="ef_view_predicted" onchange="toggle_view_predicted()"> View Predicted ATAR</li>
+  </ul>
+
   <input type="search" id="search-bar" placeholder="Search Student" spellcheck="false">
-  <ul class="key">
+  <ul class="key" id="degree_feature_key">
     <li onclick="filterStudents('engineer')"><span class="engineering-square"></span> Engineering</li>
     <li onclick="filterStudents('medicine')"><span class="medicine-square"></span> Medicine</li>
     <li onclick="filterStudents('business')"><span class="business-square"></span> Business</li>
@@ -25,57 +31,57 @@
     <li class="uni_li" id="uni_uwa">
       <h2>UWA</h2>
       <ul>
-        <li id="miscellaneous">Adam Yngstrom</li>
-        <li id="engineer">Cameron Thompson</li>
-        <li>Dariush Dabiri</li>
-        <li>Denzel Tan</li>
-        <li>Dylan Khau</li>
-        <li>Eva Veerman</li>
-        <li>Finn Crowley</li>
-        <li>Grace Gao</li>
-        <li>Jacob Laurens</li>
-        <li id="engineer">James Nguyen</li>
-        <li id="engineer">Joel O'Neill</li>
-        <li id="medicine">Katie Owen</li>
-        <li id="medicine">Lauren Siamos</li>
-        <li id="medicine">Leo Su</li>
-        <li id="engineer">Leo Timmins</li>
-        <li>Liviya Chen</li>
-        <li id="miscellaneous">Milla Joyce</li>
-        <li>Nick Sia</li>
-        <li>Oliver Haris</li>
-        <li id="engineer">Ramtin Safaei Rizi</li>
-        <li id="medicine">Riley Peck</li>
-        <li id="science">Ruby Gosling</li>
-        <li id="engineer">Sam Porch</li>
-        <li>Sophie Engdahl</li>
-        <li id="medicine">Zaira Wasson</li>
+        <li class="student" id="miscellaneous"> Adam Yngstrom                                       </li>
+        <li class="student" id="engineer">      Cameron Thompson                                    </li>
+        <li class="student">                    Dariush Dabiri                                      </li>
+        <li class="student">                    Denzel Tan                                          </li>
+        <li class="student">                    Dylan Khau                                          </li>
+        <li class="student">                    Eva Veerman                                         </li>
+        <li class="student">                    Finn Crowley                                        </li>
+        <li class="student">                    Grace Gao                                           </li>
+        <li class="student">                    Jacob Laurens                                       </li>
+        <li class="student" id="engineer">      James Nguyen                                        </li>
+        <li class="student" id="engineer">      Joel O'Neill                                        </li>
+        <li class="student" id="medicine">      Katie Owen                                          </li>
+        <li class="student" id="medicine">      Lauren Siamos                                       </li>
+        <li class="student" id="medicine">      Leo Su                                              </li>
+        <li class="student" id="engineer">      Leo Timmins         <a class="atar_score">86.85</a> </li>
+        <li class="student">                    Liviya Chen                                         </li>
+        <li class="student" id="miscellaneous"> Milla Joyce                                         </li>
+        <li class="student">                    Nick Sia                                            </li>
+        <li class="student">                    Oliver Haris                                        </li>
+        <li class="student" id="engineer">      Ramtin Safaei Rizi                                  </li>
+        <li class="student" id="medicine">      Riley Peck                                          </li>
+        <li class="student" id="science">       Ruby Gosling                                        </li>
+        <li class="student" id="engineer">      Sam Porch                                           </li>
+        <li class="student">                    Sophie Engdahl                                      </li>
+        <li class="student" id="medicine">      Zaira Wasson                                        </li>
       </ul>
       
     </li>
     <li class="uni_li" id="uni_curtin">
       <h2>Curtin</h2>
       <ul>
-        <li id="business">Andrew Lieu</li>
-        <li id="miscellaneous">Benjamin Mead</li>
-        <li id="engineer">Chris Chang</li>
-        <li>Frank Irons</li>
-        <li id="science">Isla Bairstow</li>
-        <li>Jared Che</li>
-        <li>Juliette Youngs</li>
-        <li id="science">Lachlan McDonald</li>
-        <li id="engineer">Lachy Brown</li>
-        <li id="business">Lester Wong</li>
-        <li id="business">Lily Wisniewski</li>
-        <li id="miscellaneous">Lyla Benger</li>
-        <li>Max Reinhart</li>
-        <li id="miscellaneous">Owen Phang</li>
-        <li>Purva Patel</li>
-        <li>Scarlette Cieslak</li>
-        <li>Seth Allan</li>
-        <li>Sienna Ando</li>
-        <li>Thalia Rohni Miller</li>
-        <li id="medicine">Zach Leishman</li>
+        <li class="student" id="business">      Andrew Lieu                                         </li>
+        <li class="student" id="miscellaneous"> Benjamin Mead                                       </li>
+        <li class="student" id="engineer">      Chris Chang                                         </li>
+        <li class="student">                    Frank Irons                                         </li>
+        <li class="student" id="science">       Isla Bairstow                                       </li>
+        <li class="student">                    Jared Che                                           </li>
+        <li class="student">                    Juliette Youngs                                     </li>
+        <li class="student" id="science">       Lachlan McDonald                                    </li>
+        <li class="student" id="engineer">      Lachy Brown                                         </li>
+        <li class="student" id="business">      Lester Wong                                         </li>
+        <li class="student" id="business">      Lily Wisniewski                                     </li>
+        <li class="student" id="miscellaneous"> Lyla Benger                                         </li>
+        <li class="student">                    Max Reinhart                                        </li>
+        <li class="student" id="miscellaneous"> Owen Phang                                          </li>
+        <li class="student">                    Purva Patel                                         </li>
+        <li class="student">                    Scarlette Cieslak                                   </li>
+        <li class="student">                    Seth Allan                                          </li>
+        <li class="student">                    Sienna Ando                                         </li>
+        <li class="student">                    Thalia Rohni Miller                                 </li>
+        <li class="student" id="medicine">      Zach Leishman                                       </li>
       </ul>      
     </li>
     <li class="uni_li" id="uni_murdoch">
@@ -86,10 +92,10 @@
     <li class="uni_li" id="uni_ecu">
       <h2>ECU</h2>
       <ul>
-        <li>Ben Coops</li>
-        <li>Chester Lord</li>
-        <li id="miscenllaneous">Ella Dunstan</li>
-        <li id="miscellaneous">Nicholas Hilliard III</li>
+        <li class="student">                    Ben Coops                                           </li>
+        <li class="student">                    Chester Lord                                        </li>
+        <li class="student" id="miscellaneous"> Ella Dunstan                                        </li>
+        <li class="student" id="miscellaneous"> Nicholas Hilliard III                               </li>
       </ul>
     </li>
     <li class="uni_li" id="uni_notre_dame">
@@ -100,49 +106,49 @@
     <li class="uni_li" id="uni_not_going">
       <h2>Not Going</h2>
       <ul>
-        <li>Alex Ashton</li>
-        <li>Alex Cheng</li>
-        <li>Ashli Darlington</li>
-        <li>Ben Prance</li>
-        <li>Joesephine Beer</li>
-        <li>Leila Rogers</li>
-        <li>Liam Phillips</li>
-        <li>Maitland Truran</li>
-        <li>Oli Wu</li>
-        <li>Seb Resnik</li>
+        <li class="student">                    Alex Ashton                                         </li>
+        <li class="student">                    Alex Cheng                                          </li>
+        <li class="student">                    Ashli Darlington                                    </li>
+        <li class="student">                    Ben Prance                                          </li>
+        <li class="student">                    Joesephine Beer                                     </li>
+        <li class="student">                    Leila Rogers                                        </li>
+        <li class="student">                    Liam Phillips                                       </li>
+        <li class="student">                    Maitland Truran                                     </li>
+        <li class="student">                    Oli Wu                                              </li>
+        <li class="student">                    Seb Resnik                                          </li>
       </ul>      
     </li>
     <li class="uni_li" id="uni_unsure">
       <h2>Unsure</h2>
       <ul>
-        <li>Alice Freeman</li>
-        <li>Arnav Bansal</li>
-        <li>Ben Moore</li>
-        <li>Briella Rodriguez</li>
-        <li>Catelin Posa</li>
-        <li>Charlotte Tan</li>
-        <li>Emilie Stevens</li>
-        <li>Holy Taylor</li>
-        <li>James Hicks</li>
-        <li>Josh Tay</li>
-        <li>Kaydhen Dhampa</li>
-        <li>Luca Otake</li>
-        <li>Madison Turner</li>
-        <li>Manasa Shedbalkar</li>
-        <li>Marcie Tomlinson</li>
-        <li>Mia Von Bergheim</li>
-        <li>Owen Brock</li>
-        <li>Pema Dorji</li>
-        <li>Riley Green</li>
-        <li>Sally Duffy</li>
-        <li>Svaraa Machivale</li>
-        <li>Thomas Romeo</li>
+        <li class="student">                    Alice Freeman                                       </li>
+        <li class="student">                    Arnav Bansal                                        </li>
+        <li class="student">                    Ben Moore                                           </li>
+        <li class="student">                    Briella Rodriguez                                   </li>
+        <li class="student">                    Catelin Posa                                        </li>
+        <li class="student">                    Charlotte Tan                                       </li>
+        <li class="student">                    Emilie Stevens                                      </li>
+        <li class="student">                    Holy Taylor                                         </li>
+        <li class="student">                    James Hicks                                         </li>
+        <li class="student">                    Josh Tay                                            </li>
+        <li class="student">                    Kaydhen Dhampa                                      </li>
+        <li class="student">                    Luca Otake                                          </li>
+        <li class="student">                    Madison Turner                                      </li>
+        <li class="student">                    Manasa Shedbalkar                                   </li>
+        <li class="student">                    Marcie Tomlinson                                    </li>
+        <li class="student">                    Mia Von Bergheim                                    </li>
+        <li class="student">                    Owen Brock                                          </li>
+        <li class="student">                    Pema Dorji                                          </li>
+        <li class="student">                    Riley Green                                         </li>
+        <li class="student">                    Sally Duffy                                         </li>
+        <li class="student">                    Svaraa Machivale                                    </li>
+        <li class="student">                    Thomas Romeo                                        </li>
       </ul>      
     </li>
     <li class="uni_li" id="uni_out_of_state">
       <h2>Out of State</h2>
       <ul>
-        <li id="miscellaneous">Lyla George Strickland - Melbourne</li>
+        <li class="student" id="miscellaneous"> Lyla George Strickland - Melbourne                  </li>
       </ul>
     </li>
   </ul>

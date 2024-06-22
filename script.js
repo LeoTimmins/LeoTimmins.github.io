@@ -39,3 +39,49 @@ function filterStudents(faculty) {
     student.style.display = student.id.includes(faculty) ? "" : "none";
   });
 }
+
+function toggle_view_degrees() {
+    const state = document.getElementById("ef_view_degree").checked;
+    const studentList = document.getElementById("university-list");
+  
+    if (state) {
+      // Show degrees
+      document.getElementById("degree_feature_key").style.display = "";
+      studentList.classList.remove("force_white_student"); // Remove white-text class from student list
+    } else {
+      // Hide degrees
+      document.getElementById("degree_feature_key").style.display = "none";
+      studentList.classList.add("force_white_student"); // Add white-text class to student list
+    }
+    console.log(state);
+  }
+
+function toggle_view_predicted() {
+    const state = document.getElementById("ef_view_predicted").checked;
+    const atarScores = document.getElementsByClassName("atar_score");
+
+    if (state) {
+      // Show Predicteds
+      for (let i = 0; i < atarScores.length; i++) {
+        atarScores[i].style.display = "";
+        }
+    } else {
+      // Hide Predicteds
+      for (let i = 0; i < atarScores.length; i++) {
+        atarScores[i].style.display = "none";
+      }
+    }
+    console.log(state);
+}
+
+
+// onload shit
+
+if (window.innerWidth < 1000) {
+    document.getElementById("experimental_features").style.display = "none"
+    document.getElementById("ef_view_predicted").checked = false
+    document.getElementById("ef_view_degree").checked = false
+}
+
+toggle_view_degrees()
+toggle_view_predicted()
