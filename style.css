@@ -4,6 +4,7 @@
   --business: rgb(255, 221, 189);
   --law: rgb(241, 189, 255);
   --science: rgb(182, 255, 224);
+  --teaching: rgb(255, 232, 141);
   --miscellaneous: rgb(189, 224, 255);
 }
 
@@ -92,6 +93,10 @@ body {
     background-color: var(--science);
   }
 
+  #university-list li ul #teaching{
+    background-color: var(--teaching);
+  }
+
   #university-list li ul #miscellaneous{
     background-color: var(--miscellaneous);
   }
@@ -153,6 +158,10 @@ body {
 
 .science-square {
   background-color: var(--science);
+}
+
+.teaching-square {
+  background-color: var(--teaching);
 }
 
 .misc-square {
