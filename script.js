@@ -76,6 +76,24 @@ function toggle_view_predicted() {
     console.log(state);
 }
 
+function toggle_view_specific_degree() {
+    const state = document.getElementById("ef_view_specific_degree").checked;
+    const atarScores = document.getElementsByClassName("degree_name");
+
+    if (state) {
+      // Show Degree
+      for (let i = 0; i < atarScores.length; i++) {
+        atarScores[i].style.display = "";
+        }
+    } else {
+      // Hide Degree
+      for (let i = 0; i < atarScores.length; i++) {
+        atarScores[i].style.display = "none";
+      }
+    }
+    console.log(state);
+}
+
 
 // onload shit
 
@@ -83,7 +101,9 @@ if (window.innerWidth < 1000) {
     document.getElementById("experimental_features").style.display = "none"
     document.getElementById("ef_view_predicted").checked = false
     document.getElementById("ef_view_degree").checked = false
+    document.getElementById("ef_view_specific_degree").checked = false
 }
 
 toggle_view_degrees()
 toggle_view_predicted()
+toggle_view_specific_degree()
