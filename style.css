@@ -220,6 +220,7 @@ body {
     padding-bottom: 0.5em; /* Add space below version number */
     width: 80%;
     max-width:400px;
+    position: relative;
   }
   
   #dev_notes li a {
