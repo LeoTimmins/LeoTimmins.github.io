@@ -159,11 +159,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Variables for Stats
   let totalStudents = sortedStudents.length;
+  let totalAbove95 = 0;
+  let totalBelow80 = 0;
   let totalAtar = 0.0;
 
   // Populate the leaderboard with sorted students
   sortedStudents.forEach((student, index) => {
     totalAtar += student.atar;
+    if (student.atar >= 95){totalAbove95++}
+    if (student.atar < 80){totalBelow80++}
     const listItem = document.createElement('li');
     listItem.innerHTML = `${index + 1}.&emsp;&emsp;${student.name}<a>${student.atar.toFixed(2)}</a>`;
     leaderboard.appendChild(listItem);
@@ -173,6 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const statAverage = totalAtar / totalStudents;
   const roundedAverage = roundToNearest05(statAverage);
   document.getElementById("stat-mean").innerHTML = roundedAverage.toFixed(2);
+  document.getElementById("stat-above95").innerHTML = totalAbove95;
+  document.getElementById("stat-below80").innerHTML = totalBelow80;
 
   // Calculate Quartiles
   function calculateQuartile(data, percentile) {
