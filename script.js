@@ -136,6 +136,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const students = Array.from(document.querySelectorAll('.student'));
   const leaderboard = document.getElementById('leaderboard-student-list');
 
+  totalStudentsUnflitered = students.length;
+
+
   // Create an array of student objects with name and ATAR
   const studentData = students.map(student => {
     const name = student.childNodes[0].nodeValue.trim();
@@ -178,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById("stat-mean").innerHTML = roundedAverage.toFixed(2);
   document.getElementById("stat-above95").innerHTML = totalAbove95;
   document.getElementById("stat-below80").innerHTML = totalBelow80;
+  document.getElementById("stat-reported").innerHTML = totalStudents + "/" + totalStudentsUnflitered;
 
   // Calculate Quartiles
   function calculateQuartile(data, percentile) {
