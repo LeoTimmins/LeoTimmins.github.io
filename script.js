@@ -94,6 +94,31 @@ function toggle_view_specific_degree() {
     console.log(state);
 }
 
+function toggle_view_leaderboard(close=false) {
+  const state = document.getElementById("ef_view_leaderboard").checked;
+  const atarScores = document.getElementsByClassName("leaderboard-container");
+  if (close) {
+    document.getElementById("ef_view_leaderboard").checked = "";
+  }
+  if (state & close==false) {
+    // Show Leaderboard
+    for (let i = 0; i < atarScores.length; i++) {
+      atarScores[i].style.display = "";
+      }
+    // Disable Scroll
+    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
+  } else {
+    // Hide Leaderboard
+    for (let i = 0; i < atarScores.length; i++) {
+      atarScores[i].style.display = "none";
+    }
+    // enable scroll
+    document.body.style.overflow = "";
+  }
+  console.log(state);
+}
+
 
 // onload shit
 
@@ -102,8 +127,85 @@ if (window.innerWidth < 1000) {
     document.getElementById("ef_view_predicted").checked = false
     document.getElementById("ef_view_degree").checked = false
     document.getElementById("ef_view_specific_degree").checked = false
+    document.getElementById("ef_view_leaderboard").checked = false
 }
 
 toggle_view_degrees()
 toggle_view_predicted()
 toggle_view_specific_degree()
+toggle_view_leaderboard()
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the list of all students and their ATAR scores
+  const students = Array.from(document.querySelectorAll('.student'));
+  const leaderboard = document.getElementById('leaderboard-student-list');
+
+  // Create an array of student objects with name and ATAR
+  const studentData = students.map(student => {
+    const name = student.childNodes[0].nodeValue.trim();
+    const atarElement = student.querySelector('.atar_score');
+    const atar = atarElement ? parseFloat(atarElement.textContent.trim()) : null;
+    return { name, atar };
+  });
+
+  // Filter out students without ATAR scores and sort the array by ATAR in ascending order
+  const sortedStudents = studentData
+    .filter(student => student.atar !== null)
+    .sort((a, b) => b.atar - a.atar);
+
+  // Clear the existing leaderboard list
+  leaderboard.innerHTML = '';
+
+  // Variables for Stats
+  let totalStudents = sortedStudents.length;
+  let totalAtar = 0.0;
+
+  // Populate the leaderboard with sorted students
+  sortedStudents.forEach((student, index) => {
+    totalAtar += student.atar;
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `${index + 1}.&emsp;&emsp;${student.name}<a>${student.atar.toFixed(2)}</a>`;
+    leaderboard.appendChild(listItem);
+  });
+
+  // Calculate and populate stats
+  const statAverage = totalAtar / totalStudents;
+  const roundedAverage = roundToNearest05(statAverage);
+  document.getElementById("stat-mean").innerHTML = roundedAverage.toFixed(2);
+
+  // Calculate Quartiles
+  function calculateQuartile(data, percentile) {
+    const index = (percentile / 100) * (data.length + 1);
+    if (index % 1 === 0) {
+      return data[index - 1];
+    } else {
+      const lowerIndex = Math.floor(index) - 1;
+      const upperIndex = Math.ceil(index) - 1;
+      return (data[lowerIndex] + data[upperIndex]) / 2;
+    }
+  }
+
+  const q1 = calculateQuartile(sortedStudents.map(student => student.atar), 75);
+  const q3 = calculateQuartile(sortedStudents.map(student => student.atar), 25);
+  const iqr = q3 - q1;
+  const roundedIqr = roundToNearest05(iqr);
+  document.getElementById("stat-iqr").innerHTML = roundedIqr.toFixed(2);
+
+  // Calculate standard deviation
+  const mean = roundedAverage;
+  const variance = sortedStudents.map(student => Math.pow(student.atar - mean, 2))
+                                 .reduce((acc, val) => acc + val, 0) / totalStudents;
+  const stdDev = Math.sqrt(variance);
+  const roundedStdDev = roundToNearest05(stdDev);
+  document.getElementById("stat-std").innerHTML = roundedStdDev.toFixed(2);
+
+  console.log("STAT MEAN - TOTAL ATAR: " + totalAtar + " - TOTAL STUDENTS: " + totalStudents + " - AVG: " + roundedAverage);
+  console.log("STAT IQR - Q1: " + q1 + " - Q3: " + q3 + " - IQR: " + roundedIqr);
+  console.log("STAT STD - VARIANCE: " + variance + " - STD DEV: " + roundedStdDev);
+
+  // Function to round to nearest 0.05
+  function roundToNearest05(value) {
+    return Math.round(value / 0.05) * 0.05;
+  }
+});

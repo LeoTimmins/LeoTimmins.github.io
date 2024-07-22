@@ -29,7 +29,31 @@ crossorigin="anonymous"></script>
     <li><input type="checkbox" class="feature_checkbox" id="ef_view_degree" checked onchange="toggle_view_degrees()"> View Learning Area</li>
     <li><input type="checkbox" class="feature_checkbox" id="ef_view_predicted" onchange="toggle_view_predicted()"> View Predicted ATAR</li>
     <li><input type="checkbox" class="feature_checkbox" id="ef_view_specific_degree" checked onchange="toggle_view_specific_degree()"> View Degree</li>
+    <li><input type="checkbox" class="feature_checkbox" id="ef_view_leaderboard" checked onchange="toggle_view_leaderboard()"> View Leaderboard <a style="top:110px;left:120px;width:400px;position:absolute;font-size:x-large;color: rgb(0, 170, 0);"><-- NEW FEATURE !!!</a></li>
   </ul>
+
+  <div class="leaderboard-container">
+    <div class="leaderboard-flex">
+      <h2 id="leaderboard-title">ATAR Leaderboard</h2>
+      <div class="leaderboard-close" onclick="toggle_view_leaderboard(true)">X</div>
+      <div id="leaderboard-stats">
+        <div class="stats-flex">
+          <div class="stat-wheel" style="background-color: rgb(255, 194, 169);"><a id="stat-mean">xx.xx</a></div>
+          <div class="stat-name">Mean</div>
+        </div>
+        <div class="stats-flex">
+          <div class="stat-wheel" style="background-color: rgb(181, 255, 204);"><a id="stat-iqr">xx.xx</a></div>
+          <div class="stat-name">IQR</div>
+        </div>
+        <div class="stats-flex">
+          <div class="stat-wheel" style="background-color: rgb(182, 220, 255);"><a id="stat-std">xx.xx</a></div>
+          <div class="stat-name">σ (S.D.)</div>
+        </div>
+      </div>
+      <ul id="leaderboard-student-list">
+      </ul>
+    </div>
+  </div>
 
   <input type="search" id="search-bar" placeholder="Search Student" spellcheck="false">
   <ul class="key" id="degree_feature_key">
@@ -52,7 +76,7 @@ crossorigin="anonymous"></script>
         <li class="student">                    Denzel Tan                                                                                              </li>
         <li class="student">                    Dylan Khau                                                                                              </li>
         <li class="student">                    Eva Veerman                                                                                             </li>
-        <li class="student">                    Finn Crowley                                                                                            </li>
+        <li class="student">                    Finn Crowley        <a class="atar_score">96.90</a>                                                     </li>
         <li class="student" id="science">       Grace Gao                                           <a class="degree_name">Cyber Security</a>           </li>
         <li class="student">                    Jacob Laurens                                                                                           </li>
         <li class="student" id="engineer">      James Nguyen                                                                                            </li>
@@ -61,7 +85,7 @@ crossorigin="anonymous"></script>
         <li class="student" id="medicine">      Katie Owen                                          <a class="degree_name">Dental Nurse</a>             </li>
         <li class="student" id="medicine">      Lauren Siamos                                       <a class="degree_name">Bio-Medicine Specialized</a> </li>
         <li class="student" id="medicine">      Leo Su                                                                                                  </li>
-        <li class="student" id="engineer">      Leo Timmins         <a class="atar_score">99.95</a> <a class="degree_name">Mining Engineering</a>       </li>
+        <li class="student" id="engineer">      Leo Timmins         <a class="atar_score">80.40</a> <a class="degree_name">Mining Engineering</a>       </li>
         <li class="student">                    Liviya Chen                                                                                             </li>
         <li class="student" id="miscellaneous"> Marcle Colombera                                    <a class="degree_name">Criminology</a>              </li>
         <li class="student" id="medicine">      Mattew Teo                                                                                              </li>
@@ -88,13 +112,14 @@ crossorigin="anonymous"></script>
         <li class="student" id="miscellaneous"> Benjamin Mead                                                                                           </li>
         <li class="student" id="engineer">      Chris Chang                                                                                             </li>
         <li class="student" id="science">       Evie Edwards                                                                                            </li>
-        <li class="student" id="science">       Frank Irons                                           <a class="degree_name">Applied Geology</a>        </li>
+        <li class="student" id="science">       Frank Irons         <a class="atar_score">80.55</a>   <a class="degree_name">Applied Geology</a>        </li>
         <li class="student" id="science">       Isla Bairstow                                                                                           </li>
         <li class="student">                    Jared Che                                                                                               </li>
         <li class="student" id="engineer">      Jay Jethra                                            <a class="degree_name">Metalurgical Engineering</a></li>
         <li class="student" id="business">      Jessy Onn                                                                                               </li>
         <li class="student" id="science">       Lachlan McDonald                                      <a class="degree_name">Chemistry</a>              </li>
-        <li class="student" id="engineer">      Lachy Brown                                                                                             </li>
+        <li class="student" id="engineer">      Lachy Brown         <a class="atar_score">74.95</a>                                                     </li>
+        <li class="student" id="business">      Layla Richards      <a class="atar_score">90.70</a>   <a class="degree_name">Business Admin</a>         </li>
         <li class="student" id="business">      Lester Wong                                           <a class="degree_name">Finance</a>  </li>
         <li class="student" id="business">      Lily Wisniewski                                                                                         </li>
         <li class="student" id="miscellaneous"> Lyla Benger                                                                                             </li>
@@ -103,7 +128,7 @@ crossorigin="anonymous"></script>
         <li class="student" id="miscellaneous"> Owen Phang                                            <a class="degree_name">Aboriginal+T.S Studies</a> </li>
         <li class="student">                    Owen Soucie                                                                                             </li>
         <li class="student" id="medicine">      Purva Patel                                           <a class="degree_name">Pre-Med</a>                </li>
-        <li class="student" id="science">       Scarlette Cieslak                                     <a class="degree_name">Psychology</a>             </li>
+        <li class="student" id="science">       Scarlette Cieslak   <a class="atar_score">80.20</a>   <a class="degree_name">Psychology</a>             </li>
         <li class="student">                    Seth Allan                                                                                              </li>
         <li class="student">                    Sequoia Gamble                                                                                          </li>
         <li class="student" id="engineer">      Sean Flynn                                                                                              </li>
@@ -155,7 +180,7 @@ crossorigin="anonymous"></script>
         <li class="student">                    Liam Phillips                                                                                           </li>
         <li class="student">                    Maitland Truran                                                                                         </li>
         <li class="student">                    Michael Lukavecki                                                                                       </li>
-        <li class="student">                    Nathan Gabrill                                                                                            </li>
+        <li class="student">                    Nathan Gabrill                                                                                          </li>
         <li class="student">                    Nick Eliott                                                                                             </li>
         <li class="student">                    Oliver Wu                                                                                               </li>
         <li class="student">                    Seb Resnik                                                                                              </li>
