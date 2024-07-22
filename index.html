@@ -6,6 +6,10 @@
   <title>Churchlands University Directory</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/recharts@2.1.9/umd/Recharts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <!-- Google AdSense-->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9365690019709604"
@@ -42,12 +46,12 @@ crossorigin="anonymous"></script>
           <div class="stat-name">Mean</div>
         </div>
         <div class="stats-flex">
-          <div class="stat-wheel" style="background-color: rgb(181, 255, 204);"><a id="stat-iqr">xx.xx</a></div>
-          <div class="stat-name">IQR</div>
-        </div>
-        <div class="stats-flex">
           <div class="stat-wheel" style="background-color: rgb(182, 220, 255);"><a id="stat-std">xx.xx</a></div>
           <div class="stat-name">σ (S.D.)</div>
+        </div>
+        <div class="stats-flex">
+          <div class="stat-wheel" style="background-color: rgb(181, 255, 204);"><a id="stat-iqr">xx.xx</a></div>
+          <div class="stat-name">IQR</div>
         </div>
         <div class="stats-flex">
           <div class="stat-wheel" style="background-color: rgb(246, 182, 255);"><a id="stat-above95">xx.xx</a></div>
@@ -57,6 +61,9 @@ crossorigin="anonymous"></script>
           <div class="stat-wheel" style="background-color: rgb(205, 182, 255);"><a id="stat-below80">xx.xx</a></div>
           <div class="stat-name">Students 80-</div>
         </div>
+      </div>
+      <div id="leaderboard-graph">
+        <canvas id="atarChart"></canvas>
       </div>
       <ul id="leaderboard-student-list">
       </ul>
@@ -77,10 +84,10 @@ crossorigin="anonymous"></script>
     <li class="uni_li" id="uni_uwa">
       <h2>UWA</h2>
       <ul>
-        <li class="student" id="miscellaneous"> Adam Yngstrom                                                                                           </li>
+        <li class="student" id="miscellaneous"> Adam Yngstrom       <a class="atar_score">87.75</a>                                                                                    </li>
         <li class="student" id="miscellaneous"> Alice Freeman                                       <a class="degree_name">Bachelor of Arts</a>         </li>
         <li class="student" id="engineer">      Cameron Thompson    <a class="atar_score">91.70</a>                                                                                    </li>
-        <li class="student">                    Dariush Dabiri                                                                                          </li>
+        <li class="student">                    Dariush Dabiri      <a class="atar_score">88.55</a>                                                                                    </li>
         <li class="student">                    Denzel Tan                                                                                              </li>
         <li class="student">                    Dylan Khau                                                                                              </li>
         <li class="student">                    Eva Veerman                                                                                             </li>
@@ -100,12 +107,12 @@ crossorigin="anonymous"></script>
         <li class="student" id="science">       Milla Joyce                                         <a class="degree_name">Environmental Science</a>     </li>
         <li class="student">                    Nick Sia                                                                                                </li>
         <li class="student" id="engineer">      Nicholas Amato                                      <a class="degree_name">Mechanical Engineering</a>   </li>
-        <li class="student" id="engineer">      Oliver Haris                                                                                            </li>
-        <li class="student" id="science">       Patrick Mason      <a class="atar_score">95.45</a>                                 <a class="degree_name">Zoology</a>                  </li>
-        <li class="student" id="engineer">      Ramtin Safaei Rizi                                  <a class="degree_name">Electrical Engineering</a>    </li>
+        <li class="student" id="engineer">      Oliver Haris       <a class="atar_score">96.75</a>                                                                                     </li>
+        <li class="student" id="science">       Patrick Mason      <a class="atar_score">95.45</a>  <a class="degree_name">Zoology</a>                  </li>
+        <li class="student" id="engineer">      Ramtin Safaei Rizi <a class="atar_score">96.80</a>  <a class="degree_name">Electrical Engineering</a>    </li>
         <li class="student" id="medicine">      Riley Peck                                          <a class="degree_name">Optometry</a>                </li>
         <li class="student" id="science">       Ruby Gosling                                                                                            </li>
-        <li class="student" id="engineer">      Sam Porch                                           <a class="degree_name">Electrical Engineering</a>    </li>
+        <li class="student" id="engineer">      Sam Porch          <a class="atar_score">89.25</a>                                 <a class="degree_name">Electrical Engineering</a>    </li>
         <li class="student">                    Sophie Engdahl                                                                                          </li>
         <li class="student" id="law">           Tomi Stirbinskis                                    <a class="degree_name">Politics</a>    </li>
         <li class="student">                    Xaria Wong                                                                                              </li>
@@ -263,4 +270,116 @@ crossorigin="anonymous"></script>
   </ul>
 </body>
 <script src="/script.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Function to get ATAR scores from the DOM
+    const getATARScores = () => {
+      const atarElements = document.querySelectorAll('.atar_score');
+      return Array.from(atarElements).map(el => parseFloat(el.textContent));
+    };
+  
+    // Function to create histogram data
+    const createHistogramData = (scores) => {
+      const bins = Array.from({length: 16}, (_, i) => ({
+        range: (70 + i * 2).toString(),
+        count: 0
+      }));
+  
+      scores.forEach(score => {
+        const binIndex = Math.min(Math.floor((score - 70) / 2), 14);
+        if (binIndex >= 0) bins[binIndex].count++;
+      });
+  
+      return bins;
+    };
+  
+    // Function to get the mean ATAR score from the DOM
+    const getMeanATAR = () => {
+      const meanElement = document.getElementById('stat-mean');
+      if (!meanElement) {
+        console.error('Element with id "stat-mean" not found');
+        return null;
+      }
+      const meanValue = parseFloat(meanElement.textContent);
+      console.log('Mean ATAR value:', meanValue);
+      return meanValue;
+    };
+  
+    const scores = getATARScores();
+    const histogramData = createHistogramData(scores);
+    const meanATAR = getMeanATAR();
+  
+    if (meanATAR === null) {
+      console.error('Unable to get mean ATAR score');
+      return;
+    }
+  
+    const ctx = document.getElementById('atarChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: histogramData.map(bin => bin.range),
+        datasets: [{
+          label: 'Number of Students',
+          data: histogramData.map(bin => bin.count),
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Number of Students'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'ATAR Score'
+            },
+            min: '70',
+            max: '100'
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'ATAR Score Distribution'
+          },
+          annotation: {
+            annotations: {
+              line1: {
+                type: 'line',
+                scaleID: 'x',
+                value: meanATAR.toString(),
+                borderColor: 'rgb(255, 0, 0)',
+                borderWidth: 3,
+                label: {
+                  content: `Mean: ${meanATAR.toFixed(2)}`,
+                  enabled: true,
+                  position: 'top',
+                  backgroundColor: 'rgba(255, 0, 0, 0.8)',
+                  color: 'white',
+                  font: {
+                    weight: 'bold'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+  
+    console.log('Chart created with mean line at:', meanATAR);
+  });
+</script>
 </html>

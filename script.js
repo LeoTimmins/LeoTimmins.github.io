@@ -105,16 +105,11 @@ function toggle_view_leaderboard(close=false) {
     for (let i = 0; i < atarScores.length; i++) {
       atarScores[i].style.display = "";
       }
-    // Disable Scroll
-    document.body.style.overflow = 'hidden';
-    window.scrollTo(0, 0);
   } else {
     // Hide Leaderboard
     for (let i = 0; i < atarScores.length; i++) {
       atarScores[i].style.display = "none";
     }
-    // enable scroll
-    document.body.style.overflow = "";
   }
   console.log(state);
 }
@@ -169,7 +164,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (student.atar >= 95){totalAbove95++}
     if (student.atar < 80){totalBelow80++}
     const listItem = document.createElement('li');
-    listItem.innerHTML = `${index + 1}.&emsp;&emsp;${student.name}<a>${student.atar.toFixed(2)}</a>`;
+    listItem.innerHTML = `
+      <span class="rank">${index + 1}.</span>
+      <span class="name">${student.name}</span>
+      <span class="atar">${student.atar.toFixed(2)}</span>
+    `;
     leaderboard.appendChild(listItem);
   });
 

@@ -212,7 +212,8 @@ body {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  height: 3000px;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -222,11 +223,13 @@ body {
 
 .leaderboard-flex{
   width: 700px;
-  height: 500px;
+  height: 1000px;
   background-color: rgb(238, 238, 238);
   border: #333 1px solid;
   border-radius: 3px;
-  position: relative;
+  position: absolute;
+  top: 40px;
+
 }
 
 .leaderboard-flex h2 {
@@ -236,7 +239,7 @@ body {
 #leaderboard-student-list{
   list-style: none;
   overflow-y: scroll;
-  height: 300px;
+  height: 480px;
 }
 
 #leaderboard-student-list li {
@@ -245,11 +248,7 @@ body {
   margin-bottom: 4px;
   width: 90%;
   position: relative;
-}
-
-#leaderboard-student-list li a{
-  position: absolute;
-  right: 0;
+  display: flex;
 }
 
 .leaderboard-close{
@@ -313,4 +312,25 @@ body {
   bottom: 1px;
   text-align: center;
   width: 100px;
+}
+
+.rank {
+  text-align: right;
+  width: 28px;
+  margin-right: 20px;
+}
+
+.name{
+  width: 550px;
+}
+
+.atar {
+
+}
+
+#leaderboard-graph {
+  width: 100%;
+  height: 300px;
+  margin-top: 20px;
+  padding-left: 0px;
 }
