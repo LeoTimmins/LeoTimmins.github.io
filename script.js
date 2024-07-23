@@ -27,7 +27,8 @@ function addStudentToUniversity(name, university, area, degree, atar) {
     'Murdoch': 'uni_murdoch',
     'ECU': 'uni_ecu',
     'Notre Dame': 'uni_notre_dame',
-    'Out of State': 'uni_out_of_state'
+    'Out of State': 'uni_out_of_state',
+    'Not Going': 'uni_not_going'
   };
 
   const uniId = universityMap[university] || 'uni_unsure';
