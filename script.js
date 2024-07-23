@@ -1,21 +1,80 @@
-const searchBar = document.getElementById("search-bar");
-    const studentList = document.getElementById("university-list").getElementsByTagName("li");
-
-
-    searchBar.addEventListener("keyup", function() {
-      const searchTerm = searchBar.value.toLowerCase();
-      for (let i = 0; i < studentList.length; i++) {
-        const studentText = studentList[i].textContent.toLowerCase();
-        if (studentText.indexOf(searchTerm) !== -1) {
-          studentList[i].style.display = "block";
-        } else {
-          studentList[i].style.display = "none";
+// Function to fetch CSV and populate universities
+function populateUniversities() {
+  return fetch('/data/students.csv')
+    .then(response => response.text())
+    .then(data => {
+      // Parse CSV data
+      const rows = data.split('\n').slice(1); // Remove header row
+      rows.forEach(row => {
+        const [name, university, area, degree, atar] = row.split(',');
+        if (name && university) {
+          addStudentToUniversity(name.trim(), university.trim(), area.trim(), degree.trim(), atar.trim());
         }
-        document.getElementById("dev_info").style.display = ""
-      }
-    });
+      });
+      // Call atar_stats_generate after populating universities
+      atar_stats_generate();
+      // Hide ATAR scores on load
+      toggle_view_predicted();
+    })
+    .catch(error => console.error('Error fetching CSV:', error));
+}
 
-    let currentFilter = ""; // Store the currently applied filter
+// Function to add a student to the appropriate university list
+function addStudentToUniversity(name, university, area, degree, atar) {
+  const universityMap = {
+    'UWA': 'uni_uwa',
+    'Curtin': 'uni_curtin',
+    'Murdoch': 'uni_murdoch',
+    'ECU': 'uni_ecu',
+    'Notre Dame': 'uni_notre_dame',
+    'Out of State': 'uni_out_of_state'
+  };
+
+  const uniId = universityMap[university] || 'uni_unsure';
+  const uniList = document.querySelector(`#${uniId} ul`);
+
+  if (uniList) {
+    const li = document.createElement('li');
+    li.className = 'student';
+    if (area) li.id = area;
+
+    li.textContent = name;
+
+    if (atar) {
+      const atarSpan = document.createElement('a');
+      atarSpan.className = 'atar_score';
+      atarSpan.textContent = atar;
+      li.appendChild(atarSpan);
+    }
+
+    if (degree) {
+      const degreeSpan = document.createElement('a');
+      degreeSpan.className = 'degree_name';
+      degreeSpan.textContent = degree;
+      li.appendChild(degreeSpan);
+    }
+
+    uniList.appendChild(li);
+  }
+}
+
+const searchBar = document.getElementById("search-bar");
+const studentList = document.getElementById("university-list").getElementsByTagName("li");
+
+searchBar.addEventListener("keyup", function() {
+  const searchTerm = searchBar.value.toLowerCase();
+  for (let i = 0; i < studentList.length; i++) {
+    const studentText = studentList[i].textContent.toLowerCase();
+    if (studentText.indexOf(searchTerm) !== -1) {
+      studentList[i].style.display = "block";
+    } else {
+      studentList[i].style.display = "none";
+    }
+    document.getElementById("dev_info").style.display = ""
+  }
+});
+
+let currentFilter = ""; // Store the currently applied filter
 
 function filterStudents(faculty) {
   const studentList = document.getElementById("university-list");
@@ -43,55 +102,55 @@ function filterStudents(faculty) {
 }
 
 function toggle_view_degrees() {
-    const state = document.getElementById("ef_view_degree").checked;
-    const studentList = document.getElementById("university-list");
-  
-    if (state) {
-      // Show degrees
-      document.getElementById("degree_feature_key").style.display = "";
-      studentList.classList.remove("force_white_student"); // Remove white-text class from student list
-    } else {
-      // Hide degrees
-      document.getElementById("degree_feature_key").style.display = "none";
-      studentList.classList.add("force_white_student"); // Add white-text class to student list
-    }
-    console.log(state);
+  const state = document.getElementById("ef_view_degree").checked;
+  const studentList = document.getElementById("university-list");
+
+  if (state) {
+    // Show degrees
+    document.getElementById("degree_feature_key").style.display = "";
+    studentList.classList.remove("force_white_student"); // Remove white-text class from student list
+  } else {
+    // Hide degrees
+    document.getElementById("degree_feature_key").style.display = "none";
+    studentList.classList.add("force_white_student"); // Add white-text class to student list
   }
+  console.log(state);
+}
 
 function toggle_view_predicted() {
-    const state = document.getElementById("ef_view_predicted").checked;
-    const atarScores = document.getElementsByClassName("atar_score");
+  const state = document.getElementById("ef_view_predicted").checked;
+  const atarScores = document.getElementsByClassName("atar_score");
 
-    if (state) {
-      // Show Predicteds
-      for (let i = 0; i < atarScores.length; i++) {
-        atarScores[i].style.display = "";
-        }
-    } else {
-      // Hide Predicteds
-      for (let i = 0; i < atarScores.length; i++) {
-        atarScores[i].style.display = "none";
-      }
+  if (state) {
+    // Show Predicteds
+    for (let i = 0; i < atarScores.length; i++) {
+      atarScores[i].style.display = "";
     }
-    console.log(state);
+  } else {
+    // Hide Predicteds
+    for (let i = 0; i < atarScores.length; i++) {
+      atarScores[i].style.display = "none";
+    }
+  }
+  console.log(state);
 }
 
 function toggle_view_specific_degree() {
-    const state = document.getElementById("ef_view_specific_degree").checked;
-    const atarScores = document.getElementsByClassName("degree_name");
+  const state = document.getElementById("ef_view_specific_degree").checked;
+  const atarScores = document.getElementsByClassName("degree_name");
 
-    if (state) {
-      // Show Degree
-      for (let i = 0; i < atarScores.length; i++) {
-        atarScores[i].style.display = "";
-        }
-    } else {
-      // Hide Degree
-      for (let i = 0; i < atarScores.length; i++) {
-        atarScores[i].style.display = "none";
-      }
+  if (state) {
+    // Show Degree
+    for (let i = 0; i < atarScores.length; i++) {
+      atarScores[i].style.display = "";
     }
-    console.log(state);
+  } else {
+    // Hide Degree
+    for (let i = 0; i < atarScores.length; i++) {
+      atarScores[i].style.display = "none";
+    }
+  }
+  console.log(state);
 }
 
 function toggle_view_leaderboard(close=false) {
@@ -100,11 +159,11 @@ function toggle_view_leaderboard(close=false) {
   if (close) {
     document.getElementById("ef_view_leaderboard").checked = "";
   }
-  if (state & close==false) {
+  if (state && close==false) {
     // Show Leaderboard
     for (let i = 0; i < atarScores.length; i++) {
       atarScores[i].style.display = "";
-      }
+    }
   } else {
     // Hide Leaderboard
     for (let i = 0; i < atarScores.length; i++) {
@@ -114,30 +173,12 @@ function toggle_view_leaderboard(close=false) {
   console.log(state);
 }
 
-
-// onload shit
-
-if (window.innerWidth < 1000) {
-    document.getElementById("experimental_features").style.display = "none"
-    document.getElementById("ef_view_predicted").checked = false
-    document.getElementById("ef_view_degree").checked = false
-    document.getElementById("ef_view_specific_degree").checked = false
-    document.getElementById("ef_view_leaderboard").checked = false
-}
-
-toggle_view_degrees()
-toggle_view_predicted()
-toggle_view_specific_degree()
-toggle_view_leaderboard()
-
-
-document.addEventListener('DOMContentLoaded', function () {
+function atar_stats_generate() {
   // Get the list of all students and their ATAR scores
   const students = Array.from(document.querySelectorAll('.student'));
   const leaderboard = document.getElementById('leaderboard-student-list');
 
-  totalStudentsUnflitered = students.length;
-
+  const totalStudentsUnflitered = students.length;
 
   // Create an array of student objects with name and ATAR
   const studentData = students.map(student => {
@@ -164,8 +205,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Populate the leaderboard with sorted students
   sortedStudents.forEach((student, index) => {
     totalAtar += student.atar;
-    if (student.atar >= 95){totalAbove95++}
-    if (student.atar < 80){totalBelow80++}
+    if (student.atar >= 95) totalAbove95++;
+    if (student.atar < 80) totalBelow80++;
     const listItem = document.createElement('li');
     listItem.innerHTML = `
       <span class="rank">${index + 1}.</span>
@@ -217,4 +258,139 @@ document.addEventListener('DOMContentLoaded', function () {
   function roundToNearest05(value) {
     return Math.round(value / 0.05) * 0.05;
   }
+}
+
+// Function to create the ATAR chart
+function createATARChart() {
+  // Function to get ATAR scores from the DOM
+  const getATARScores = () => {
+    const atarElements = document.querySelectorAll('.atar_score');
+    return Array.from(atarElements).map(el => parseFloat(el.textContent));
+  };
+
+  // Function to create histogram data
+  const createHistogramData = (scores) => {
+    const bins = Array.from({length: 16}, (_, i) => ({
+      range: (70 + i * 2).toString(),
+      count: 0
+    }));
+
+    scores.forEach(score => {
+      const binIndex = Math.min(Math.floor((score - 70) / 2), 14);
+      if (binIndex >= 0) bins[binIndex].count++;
+    });
+
+    return bins;
+  };
+
+  // Function to get the mean ATAR score from the DOM
+  const getMeanATAR = () => {
+    const meanElement = document.getElementById('stat-mean');
+    if (!meanElement) {
+      console.error('Element with id "stat-mean" not found');
+      return null;
+    }
+    const meanValue = parseFloat(meanElement.textContent);
+    console.log('Mean ATAR value:', meanValue);
+    return meanValue;
+  };
+
+  const scores = getATARScores();
+  const histogramData = createHistogramData(scores);
+  const meanATAR = getMeanATAR();
+
+  if (meanATAR === null) {
+    console.error('Unable to get mean ATAR score');
+    return;
+  }
+
+  const ctx = document.getElementById('atarChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: histogramData.map(bin => bin.range),
+      datasets: [{
+        label: 'Number of Students',
+        data: histogramData.map(bin => bin.count),
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Number of Students'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'ATAR Score'
+          },
+          min: '70',
+          max: '100'
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'ATAR Score Distribution'
+        },
+        annotation: {
+          annotations: {
+            line1: {
+              type: 'line',
+              scaleID: 'x',
+              value: meanATAR.toString(),
+              borderColor: 'rgb(255, 0, 0)',
+              borderWidth: 3,
+              label: {
+                content: `Mean: ${meanATAR.toFixed(2)}`,
+                enabled: true,
+                position: 'top',
+                backgroundColor: 'rgba(255, 0, 0, 0.8)',
+                color: 'white',
+                font: {
+                  weight: 'bold'
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+
+  console.log('Chart created with mean line at:', meanATAR);
+}
+
+// Modify the onload section
+document.addEventListener('DOMContentLoaded', function() {
+  populateUniversities()
+    .then(() => {
+      if (window.innerWidth < 1000) {
+        document.getElementById("experimental_features").style.display = "none";
+        document.getElementById("ef_view_predicted").checked = false;
+        document.getElementById("ef_view_degree").checked = false;
+        document.getElementById("ef_view_specific_degree").checked = false;
+        document.getElementById("ef_view_leaderboard").checked = false;
+      }
+
+      toggle_view_degrees();
+      toggle_view_predicted();
+      toggle_view_specific_degree();
+      toggle_view_leaderboard();
+
+      // Call the function to create the chart
+      createATARChart();
+    })
+    .catch(error => console.error('Error in initialization:', error));
 });

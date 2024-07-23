@@ -32,7 +32,7 @@ crossorigin="anonymous"></script>
     <li><h4>Optional Features</h4></li>
     <li><input type="checkbox" class="feature_checkbox" id="ef_view_degree" checked onchange="toggle_view_degrees()"> View Learning Area</li>
     <li><input type="checkbox" class="feature_checkbox" id="ef_view_predicted" onchange="toggle_view_predicted()"> View Predicted ATAR</li>
-    <li><input type="checkbox" class="feature_checkbox" id="ef_view_specific_degree" checked onchange="toggle_view_specific_degree()"> View Degree</li>
+    <li><input type="checkbox" class="feature_checkbox" id="ef_view_specific_degree" onchange="toggle_view_specific_degree()"> View Degree</li>
     <li><input type="checkbox" class="feature_checkbox" id="ef_view_leaderboard" checked onchange="toggle_view_leaderboard()"> View Leaderboard <a style="top:110px;left:120px;width:400px;position:absolute;font-size:x-large;color: rgb(0, 170, 0);"><-- new feature 🥺</a></li>
   </ul>
 
@@ -88,302 +88,47 @@ crossorigin="anonymous"></script>
     <li class="uni_li" id="uni_uwa">
       <h2>UWA</h2>
       <ul>
-        <li class="student" id="miscellaneous"> Adam Yngstrom       <a class="atar_score">87.75</a>                                                                                    </li>
-        <li class="student" id="miscellaneous"> Alice Freeman                                       <a class="degree_name">Bachelor of Arts</a>         </li>
-        <li class="student" id="engineer">      Cameron Thompson    <a class="atar_score">91.70</a>                                                                                    </li>
-        <li class="student">                    Dariush Dabiri      <a class="atar_score">88.55</a>                                                                                    </li>
-        <li class="student">                    Denzel Tan                                                                                              </li>
-        <li class="student">                    Dylan Khau                                                                                              </li>
-        <li class="student">                    Eva Veerman                                                                                             </li>
-        <li class="student">                    Finn Crowley        <a class="atar_score">96.90</a>                                                     </li>
-        <li class="student" id="science">       Grace Gao                                           <a class="degree_name">Cyber Security</a>           </li>
-        <li class="student">                    Jacob Laurens                                                                                           </li>
-        <li class="student" id="engineer">      James Nguyen                                                                                            </li>
-        <li class="student">                    Jessica Morrissey                                                                                       </li>
-        <li class="student" id="engineer">      Joel O'Neill        <a class="atar_score">97.20</a>                                <a class="degree_name">Electrical Engineering</a>    </li>
-        <li class="student" id="medicine">      Katie Owen                                          <a class="degree_name">Dental Nurse</a>             </li>
-        <li class="student" id="medicine">      Lauren Siamos                                       <a class="degree_name">Bio-Medicine Specialized</a> </li>
-        <li class="student" id="medicine">      Leo Su                                                                                                  </li>
-        <li class="student" id="engineer">      Leo Timmins         <a class="atar_score">80.40</a> <a class="degree_name">Mining Engineering</a>       </li>
-        <li class="student">                    Liviya Chen                                                                                             </li>
-        <li class="student" id="miscellaneous"> Marcle Colombera                                    <a class="degree_name">Criminology</a>              </li>
-        <li class="student" id="medicine">      Mattew Teo                                                                                              </li>
-        <li class="student" id="science">       Milla Joyce                                         <a class="degree_name">Environmental Science</a>     </li>
-        <li class="student">                    Nick Sia                                                                                                </li>
-        <li class="student" id="engineer">      Nicholas Amato                                      <a class="degree_name">Mechanical Engineering</a>   </li>
-        <li class="student" id="engineer">      Oliver Haris       <a class="atar_score">96.75</a>                                                                                     </li>
-        <li class="student" id="science">       Patrick Mason      <a class="atar_score">95.45</a>  <a class="degree_name">Zoology</a>                  </li>
-        <li class="student" id="engineer">      Ramtin Safaei Rizi <a class="atar_score">96.80</a>  <a class="degree_name">Electrical Engineering</a>    </li>
-        <li class="student" id="medicine">      Riley Peck         <a class="atar_score">93.15</a>                                 <a class="degree_name">Optometry</a>                </li>
-        <li class="student" id="science">       Ruby Gosling                                                                                            </li>
-        <li class="student" id="engineer">      Sam Porch          <a class="atar_score">89.25</a>                                 <a class="degree_name">Electrical Engineering</a>    </li>
-        <li class="student">                    Sophie Engdahl                                                                                          </li>
-        <li class="student" id="law">           Tomi Stirbinskis                                    <a class="degree_name">Politics</a>    </li>
-        <li class="student">                    Xaria Wong                                                                                              </li>
-        <li class="student" id="medicine">      Zaira Wasson                                        <a class="degree_name">Bio-Medical Science</a>  </li>
       </ul>
     </li>
     <li class="uni_li" id="uni_curtin">
       <h2>Curtin</h2>
       <ul>
-        <li class="student" id="business">      Alex Thomspon                                         <a class="degree_name">Bachelor of Innovation</a> </li>
-        <li class="student" id="business">      Andrew Lieu                                                                                             </li>
-        <li class="student" id="miscellaneous"> Benjamin Mead                                                                                           </li>
-        <li class="student" id="engineer">      Chris Chang                                                                                             </li>
-        <li class="student" id="science">       Evie Edwards                                                                                            </li>
-        <li class="student" id="science">       Frank Irons         <a class="atar_score">80.55</a>   <a class="degree_name">Applied Geology</a>        </li>
-        <li class="student" id="science">       Isla Bairstow                                                                                           </li>
-        <li class="student">                    Jared Che                                                                                               </li>
-        <li class="student" id="engineer">      Jay Jethra                                            <a class="degree_name">Metallurgical Engineering</a></li>
-        <li class="student" id="business">      Jessy Onn                                                                                               </li>
-        <li class="student" id="science">       Lachlan McDonald                                      <a class="degree_name">Chemistry</a>              </li>
-        <li class="student" id="engineer">      Lachy Brown         <a class="atar_score">74.95</a>                                                     </li>
-        <li class="student" id="business">      Layla Richards      <a class="atar_score">90.70</a>   <a class="degree_name">Business Admin</a>         </li>
-        <li class="student" id="business">      Lester Wong                                           <a class="degree_name">Finance</a>  </li>
-        <li class="student" id="business">      Lily Wisniewski                                                                                         </li>
-        <li class="student" id="miscellaneous"> Lyla Benger                                                                                             </li>
-        <li class="student" id="science">       Maddie Wade                                                                                             </li>
-        <li class="student">                    Max Reinhart        <a class="atar_score">97.30</a>                                                                                    </li>
-        <li class="student" id="miscellaneous"> Owen Phang                                            <a class="degree_name">Aboriginal+T.S Studies</a> </li>
-        <li class="student">                    Owen Soucie                                                                                             </li>
-        <li class="student" id="medicine">      Purva Patel                                           <a class="degree_name">Pre-Med</a>                </li>
-        <li class="student" id="science">       Scarlette Cieslak   <a class="atar_score">80.20</a>   <a class="degree_name">Psychology</a>             </li>
-        <li class="student">                    Seth Allan                                                                                              </li>
-        <li class="student">                    Sequoia Gamble                                                                                          </li>
-        <li class="student" id="engineer">      Sean Flynn                                                                                              </li>
-        <li class="student" id="medicine">      Sienna Ando                                           <a class="degree_name">Radiology</a>              </li>
-        <li class="student" id="medicine">      Zach Leishman                                                                                           </li>
       </ul>      
     </li>
     <li class="uni_li" id="uni_murdoch">
       <h2>Murdoch</h2>
       <ul>
-        <li class="student" id="science">       Sahara Mueller                                        <a class="degree_name">Forensics + Criminology</a></li>
       </ul>
     </li>
     <li class="uni_li" id="uni_ecu">
       <h2>ECU</h2>
       <ul>
-        <li class="student" id="medicine">      Amelia Brown                                          <a class="degree_name">Nursing</a>                </li>
-        <li class="student" id="miscellaneous"> Ben Coops                                             <a class="degree_name">Media Studies</a>          </li>
-        <li class="student" id="medicine">      Charlotte Kemp                                                                                          </li>
-        <li class="student">                    Chelita Fontana                                                                                         </li>
-        <li class="student">                    Chester Lord         <a class="atar_score">90.85</a>                                                                                   </li>
-        <li class="student" id="teaching">      Ella Dunstan                                          <a class="degree_name">Primary School Teaching</a></li>
-        <li class="student" id="teaching">      Emily Cave                                                                                              </li>
-        <li class="student" id="teaching">      Erin Day                                              <a class="degree_name">Primary School Teaching</a></li>
-        <li class="student" id="miscellaneous"> Nicholas Hilliard   <a class="atar_score">93.70</a>                                                                                    </li>
-        <li class="student" id="miscellaneous"> Remy dufty                                                                                              </li>
-        <li class="student" id="medicine">      Riley Cooke                                                                                             </li>
       </ul>
     </li>
     <li class="uni_li" id="uni_notre_dame">
       <h2>Notre Dame</h2>
       <ul>
-        <li class="student" id="medicine">      Ruby Thompson                                           <a class="degree_name">Bio-Medicine</a>         </li>
       </ul>
     </li>
     <li class="uni_li" id="uni_not_going">
       <h2>Not Going</h2>
       <ul>
-        <li class="student">                    Alex Ashton                                                                                             </li>
-        <li class="student">                    Alex Cheng                                                                                              </li>
-        <li class="student">                    Angus Shand                                                                                             </li>
-        <li class="student">                    Ashli Darlington                                                                                        </li>
-        <li class="student">                    Ben Prance                                                                                              </li>
-        <li class="student">                    Eimer Burns                                                                                             </li>
-        <li class="student">                    Erika Hardman                                                                                           </li>
-        <li class="student">                    Jasmine Lacy                                                                                            </li>
-        <li class="student">                    Jeremy Webber                                                                                           </li>
-        <li class="student">                    Joesephine Beer                                                                                         </li>
-        <li class="student">                    Leila Rogers                                                                                            </li>
-        <li class="student">                    Liam Phillips                                                                                           </li>
-        <li class="student">                    Maitland Truran                                                                                         </li>
-        <li class="student">                    Michael Lukavecki                                                                                       </li>
-        <li class="student">                    Nathan Gabrill                                                                                          </li>
-        <li class="student">                    Nick Eliott                                                                                             </li>
-        <li class="student">                    Oliver Wu                                                                                               </li>
-        <li class="student">                    Seb Resnik                                                                                              </li>
       </ul>      
     </li>
     <li class="uni_li" id="uni_unsure">
       <h2>Unsure</h2>
       <ul>
-        <li class="student">                    Aidan MacDonald                                                                                         </li>
-        <li class="student">                    Amilie Hayles-Stenhouse                                                                                 </li>
-        <li class="student">                    Amilie Simpson                                                                                          </li>
-        <li class="student">                    Amilie Stienes                                                                                          </li>
-        <li class="student">                    Amilie Wattson                                                                                          </li>
-        <li class="student">                    Angel King                                                                                              </li>
-        <li class="student">                    Angelina Terry                                                                                          </li>
-        <li class="student">                    Arnav Bansal                                                                                            </li>
-        <li class="student">                    Ashleigh Mackensie                                                                                      </li>
-        <li class="student">                    Ben Moore                                                                                               </li>
-        <li class="student">                    Briella Rodriguez                                                                                       </li>
-        <li class="student">                    Bronte Pittaway                                                                                         </li>
-        <li class="student" id="science">       Cate Bellamy                                                  <a class="degree_name">Health Science</a> </li>
-        <li class="student">                    Caitlin Posa                                                                                            </li>
-        <li class="student">                    Charles Wade                                                                                            </li>
-        <li class="student" id="medicine">      Charlotte Tan                                                 <a class="degree_name">Nursing</a>        </li>
-        <li class="student">                    Elyse Hutton                                                                                            </li>
-        <li class="student">                    Emilie Stevens                                                                                          </li>
-        <li class="student">                    Emma Rowan                                                                                              </li>
-        <li class="student">                    Georgina Bardsley                                                                                       </li>
-        <li class="student">                    Holy Taylor                                                                                             </li>
-        <li class="student">                    James Hicks                                                                                             </li>
-        <li class="student">                    Josh Tay                                                                                                </li>
-        <li class="student">                    Juliette Youngs                                                                                         </li>
-        <li class="student">                    Isabelle Chan                                                                                           </li>
-        <li class="student">                    Kaydhen Dhampa                                                                                          </li>
-        <li class="student">                    Kyela Horobin                                                                                           </li>
-        <li class="student">                    Luca Otake                                                                                              </li>
-        <li class="student">                    Lucas Ledowskii                                                                                         </li>
-        <li class="student">                    Madison Turner                                                                                          </li>
-        <li class="student">                    Manasa Shedbalkar                                                                                       </li>
-        <li class="student">                    Marcie Tomlinson                                                                                        </li>
-        <li class="student">                    Mia Von Bergheim                                                                                        </li>
-        <li class="student">                    Michelle Klein                                                                                          </li>
-        <li class="student">                    Oscar O'Malley              <a class="atar_score">80.25</a>                                             </li>
-        <li class="student">                    Owen Brock                                                                                              </li>
-        <li class="student">                    Pema Dorji                                                                                              </li>
-        <li class="student">                    Remy Payne                                                                                              </li>
-        <li class="student">                    Riley Green                                                                                             </li>
-        <li class="student">                    Sally Duffy                                                                                             </li>
-        <li class="student">                    Sophia Ogle                                                                                             </li>
-        <li class="student">                    Stella Belfield                                                                                         </li>
-        <li class="student">                    Svaraa Machivale                                                                                        </li>
-        <li class="student">                    Thomas Romeo                                                                                            </li>
-        <li class="student">                    Wil Vaugn                                                                                               </li>
       </ul>      
     </li>
     <li class="uni_li" id="uni_out_of_state">
       <h2>Out of State</h2>
       <ul>
-        <li class="student" id="law">           Carys Reilly                                  <a class="degree_name">Pre-Law</a>                        </li>
-        <li class="student" id="business">      Jana Ruzic                                                                                              </li>
-        <li class="student" id="medicine">      Jess Forde                                    <a class="degree_name">Neuroscience</a>                   </li>
-        <li class="student" id="miscellaneous"> Lyla George Strickland                        <a class="degree_name">Bachelor of Arts</a>               </li>
-        <li class="student" id="law">           Merle George Strickland                       <a class="degree_name">Law and I.R</a></li>
-        <li class="student" id="medicine">      Mia Meredith Disley                           <a class="degree_name">Neuroscience</a>                   </li>
-        <li class="student" id="science">       Thalia Rohini Miller                          <a class="degree_name">Cyber Security</a>                 </li>
       </ul>
     </li>
     <li id="dev_info">
-        <a>Version 1.0.0.4 • Leo Timmins • MIT License • Desktop & Mobile functionality • <a href="/developer.html">Release Notes</a></a>
+        <a>Version 1.0.0.5 • Leo Timmins • MIT License • Desktop & Mobile functionality • <a href="/developer.html">Release Notes</a></a>
     </li>
   </ul>
 </body>
 <script src="/script.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Function to get ATAR scores from the DOM
-    const getATARScores = () => {
-      const atarElements = document.querySelectorAll('.atar_score');
-      return Array.from(atarElements).map(el => parseFloat(el.textContent));
-    };
-  
-    // Function to create histogram data
-    const createHistogramData = (scores) => {
-      const bins = Array.from({length: 16}, (_, i) => ({
-        range: (70 + i * 2).toString(),
-        count: 0
-      }));
-  
-      scores.forEach(score => {
-        const binIndex = Math.min(Math.floor((score - 70) / 2), 14);
-        if (binIndex >= 0) bins[binIndex].count++;
-      });
-  
-      return bins;
-    };
-  
-    // Function to get the mean ATAR score from the DOM
-    const getMeanATAR = () => {
-      const meanElement = document.getElementById('stat-mean');
-      if (!meanElement) {
-        console.error('Element with id "stat-mean" not found');
-        return null;
-      }
-      const meanValue = parseFloat(meanElement.textContent);
-      console.log('Mean ATAR value:', meanValue);
-      return meanValue;
-    };
-  
-    const scores = getATARScores();
-    const histogramData = createHistogramData(scores);
-    const meanATAR = getMeanATAR();
-  
-    if (meanATAR === null) {
-      console.error('Unable to get mean ATAR score');
-      return;
-    }
-  
-    const ctx = document.getElementById('atarChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: histogramData.map(bin => bin.range),
-        datasets: [{
-          label: 'Number of Students',
-          data: histogramData.map(bin => bin.count),
-          borderColor: 'rgba(75, 192, 192, 1)',
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderWidth: 2,
-          fill: true,
-          tension: 0.4
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Number of Students'
-            }
-          },
-          x: {
-            title: {
-              display: true,
-              text: 'ATAR Score'
-            },
-            min: '70',
-            max: '100'
-          }
-        },
-        plugins: {
-          title: {
-            display: true,
-            text: 'ATAR Score Distribution'
-          },
-          annotation: {
-            annotations: {
-              line1: {
-                type: 'line',
-                scaleID: 'x',
-                value: meanATAR.toString(),
-                borderColor: 'rgb(255, 0, 0)',
-                borderWidth: 3,
-                label: {
-                  content: `Mean: ${meanATAR.toFixed(2)}`,
-                  enabled: true,
-                  position: 'top',
-                  backgroundColor: 'rgba(255, 0, 0, 0.8)',
-                  color: 'white',
-                  font: {
-                    weight: 'bold'
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    });
-  
-    console.log('Chart created with mean line at:', meanATAR);
-  });
-</script>
 </html>
