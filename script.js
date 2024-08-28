@@ -394,6 +394,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("ef_view_specific_degree").checked = false;
         document.getElementById("ef_view_leaderboard").checked = false;
         document.getElementById("se_container").style.display = "none";
+        document.getElementById("se_list").style.display = "none";
       }
 
       toggle_view_degrees();
