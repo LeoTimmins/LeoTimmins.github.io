@@ -333,3 +333,69 @@ body {
   margin-top: 20px;
   padding-left: 0px;
 }
+
+#se_container {
+  left: 0;
+  width: 100%;
+  top: 100px;
+  z-index: 1;
+  position: absolute;
+  height: 500px;
+  margin-bottom: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.se_inner_container {
+  position: relative;
+  width: 60%;
+  background-color: white;
+  height: 500px;
+  border: 1px rgb(129, 129, 129) solid;
+  border-radius: 4px;
+  background: linear-gradient(312deg, rgba(124, 209, 251, 1) 0%, rgba(255, 140, 205, 1) 100%);  
+}
+
+.se_box_container {
+  display: flex;
+  justify-content: center;
+}
+
+.se_box {
+  border: 1px solid rgb(180, 180, 180);
+  margin: 20px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 400px;
+  height: 320px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.721);
+}
+
+.se_exit_container {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  border-radius: 3px;
+  border: 1px solid black;
+  left: 1px;
+  top: 1px;
+  text-align: center;
+  font-size: 37px;
+  cursor:pointer;
+  background-color: rgba(255, 255, 255, 0.721);
+}
+
+#se_list {
+  list-style-type: none;
+  position: absolute;
+  top: 10px;
+  right: 50px;
+}
+
+#se_list li a{
+  cursor: pointer;
+  color: rgb(93, 174, 255);
+}

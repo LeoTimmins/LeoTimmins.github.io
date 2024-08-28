@@ -19,6 +19,16 @@ function populateUniversities() {
     .catch(error => console.error('Error fetching CSV:', error));
 }
 
+function close_se_box () {
+  cont = document.getElementById("se_container")
+  cont.style.display = "none"
+}
+
+function show_se_box () {
+  cont = document.getElementById("se_container")
+  cont.style.display = "flex"
+}
+
 // Function to add a student to the appropriate university list
 function addStudentToUniversity(name, university, area, degree, atar) {
   const universityMap = {
@@ -383,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById("ef_view_degree").checked = false;
         document.getElementById("ef_view_specific_degree").checked = false;
         document.getElementById("ef_view_leaderboard").checked = false;
+        document.getElementById("se_container").style.display = "none";
       }
 
       toggle_view_degrees();
@@ -395,3 +406,4 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => console.error('Error in initialization:', error));
 });
+

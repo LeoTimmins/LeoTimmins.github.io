@@ -1,134 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
-  <title>Churchlands University Directory</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <script src="/dependancys/react.dev.js"></script>
-  <script src="/dependancys/react.dom.dev.js"></script>
-  <script src="/dependancys/recharts.js"></script>
-  <script src="/dependancys/chart.js"></script>
-</head>
-<!-- Google AdSense-->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9365690019709604"
-crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YWHN4FDL42"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <head>
+        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <title>Churchlands University Directory</title>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <script src="/dependancys/react.dev.js"></script>
+        <script src="/dependancys/react.dom.dev.js"></script>
+        <script src="/dependancys/recharts.js"></script>
+        <script src="/dependancys/chart.js"></script>
+    </head>
+    <!-- Google AdSense-->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9365690019709604"
+        crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWHN4FDL42"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-YWHN4FDL42');
+    </script>
+    <body>
+        <h1>The Churchlands University Directory</h1>
+        <h3>Managed by Leo Timmins</h3>
+        <h4><a href="/consent.html">All data gathered with user consent</a></h4>
+        <ul id="experimental_features">
+            <li>
+                <h4>Optional Features</h4>
+            </li>
+            <li><input type="checkbox" class="feature_checkbox" id="ef_view_degree" checked onchange="toggle_view_degrees()"> View Learning Area</li>
+            <li><input type="checkbox" class="feature_checkbox" id="ef_view_predicted" onchange="toggle_view_predicted()"> View Predicted ATAR</li>
+            <li><input type="checkbox" class="feature_checkbox" id="ef_view_specific_degree" onchange="toggle_view_specific_degree()"> View Degree</li>
+            <li><input type="checkbox" class="feature_checkbox" id="ef_view_leaderboard" onchange="toggle_view_leaderboard()"> View Leaderboard </li>
+        </ul>
+        <ul id="se_list">
+          <li>
+              <h4>Current Events</h4>
+          </li>
+          <li><a onclick="show_se_box()"> Year 12 Gender Swap </a></li>
+      </ul>
+        <div class="leaderboard-container" style="display:hidden;">
+            <div class="leaderboard-flex">
+                <h2 id="leaderboard-title">ATAR Leaderboard</h2>
+                <div class="leaderboard-close" onclick="toggle_view_leaderboard(true)">X</div>
+                <div id="leaderboard-stats">
+                    <div class="stats-flex">
+                        <div class="stat-wheel" style="background-color: rgb(255, 194, 169);"><a id="stat-mean">xx.xx</a></div>
+                        <div class="stat-name">Mean</div>
+                    </div>
+                    <div class="stats-flex">
+                        <div class="stat-wheel" style="background-color: rgb(182, 220, 255);"><a id="stat-std">xx.xx</a></div>
+                        <div class="stat-name">σ (S.D.)</div>
+                    </div>
+                    <div class="stats-flex">
+                        <div class="stat-wheel" style="background-color: rgb(181, 255, 204);"><a id="stat-iqr">xx.xx</a></div>
+                        <div class="stat-name">IQR</div>
+                    </div>
+                    <div class="stats-flex">
+                        <div class="stat-wheel" style="background-color: rgb(246, 182, 255);"><a id="stat-above95">xx.xx</a></div>
+                        <div class="stat-name">Students 95+</div>
+                    </div>
+                    <div class="stats-flex">
+                        <div class="stat-wheel" style="background-color: rgb(205, 182, 255);"><a id="stat-below80">xx.xx</a></div>
+                        <div class="stat-name">Students 80-</div>
+                    </div>
+                    <div class="stats-flex">
+                        <div class="stat-wheel" style="background-color: rgb(255, 182, 182);"><a id="stat-reported">xx.xx</a></div>
+                        <div class="stat-name">Reported</div>
+                    </div>
+                </div>
+                <div id="leaderboard-graph">
+                    <canvas id="atarChart"></canvas>
+                </div>
+                <ul id="leaderboard-student-list">
+                </ul>
+            </div>
+        </div>
+        <!-- Special Event: Gender Swap day -->
+        <div id="se_container">
+          <div class="se_inner_container">
+            <div onclick="close_se_box()" class="se_exit_container">X</div>
+            <h2>Event: Gender Swap Day</h2>
+            <h3>Date: 30 / 08 / 24</h3>
+            <div class="se_box_container">
+              <div class="se_box">
+                <h3> For Men: </h3> 
+                <p>
+                  Grab a skirt!
+                </p>
+                <p>
+                  Bonus points for having a bow in your hair.
+                  Get yourself a manicure with some fancy medium french tips.
+                </p>
+                <p>
+                  Ever wanted to fab up with some contour or eyeshadow? Now
+                  is your chance to have your girly pop summer. 
+                </p>
+              </div>
+              <div class="se_box">
+                <h3> For Women: </h3> 
+                <p>
+                  Get Manly!
+                </p>
+                <p>
+                  Show up with some padded buff muscles.
+                  Grow out that goatee, celebrate an early mo-vember.
+                </p>
+                <p>
+                  Ever wondered what you'd look like in a mullet, find out.
+                </p>
+                <p>
+                  Do you bring deodrent to school? feel free to leave it home for today. Or better yet, load up on some Lynx Africa
+                </p>
+              </div>
+            </div>
+          </div> 
+        </div>
 
-  gtag('config', 'G-YWHN4FDL42');
-</script>
-<body>
-  <h1>The Churchlands University Directory</h1>
-  <h3>Managed by Leo Timmins</h3>
-  <h4><a href="/consent.html">All data gathered with user consent</a></h4>
-
-  <ul id="experimental_features">
-    <li><h4>Optional Features</h4></li>
-    <li><input type="checkbox" class="feature_checkbox" id="ef_view_degree" checked onchange="toggle_view_degrees()"> View Learning Area</li>
-    <li><input type="checkbox" class="feature_checkbox" id="ef_view_predicted" onchange="toggle_view_predicted()"> View Predicted ATAR</li>
-    <li><input type="checkbox" class="feature_checkbox" id="ef_view_specific_degree" onchange="toggle_view_specific_degree()"> View Degree</li>
-    <li><input type="checkbox" class="feature_checkbox" id="ef_view_leaderboard" onchange="toggle_view_leaderboard()"> View Leaderboard </li>
-  </ul>
-
-  <div class="leaderboard-container">
-    <div class="leaderboard-flex">
-      <h2 id="leaderboard-title">ATAR Leaderboard</h2>
-      <div class="leaderboard-close" onclick="toggle_view_leaderboard(true)">X</div>
-      <div id="leaderboard-stats">
-        <div class="stats-flex">
-          <div class="stat-wheel" style="background-color: rgb(255, 194, 169);"><a id="stat-mean">xx.xx</a></div>
-          <div class="stat-name">Mean</div>
-        </div>
-        <div class="stats-flex">
-          <div class="stat-wheel" style="background-color: rgb(182, 220, 255);"><a id="stat-std">xx.xx</a></div>
-          <div class="stat-name">σ (S.D.)</div>
-        </div>
-        <div class="stats-flex">
-          <div class="stat-wheel" style="background-color: rgb(181, 255, 204);"><a id="stat-iqr">xx.xx</a></div>
-          <div class="stat-name">IQR</div>
-        </div>
-        <div class="stats-flex">
-          <div class="stat-wheel" style="background-color: rgb(246, 182, 255);"><a id="stat-above95">xx.xx</a></div>
-          <div class="stat-name">Students 95+</div>
-        </div>
-        <div class="stats-flex">
-          <div class="stat-wheel" style="background-color: rgb(205, 182, 255);"><a id="stat-below80">xx.xx</a></div>
-          <div class="stat-name">Students 80-</div>
-        </div>
-        <div class="stats-flex">
-          <div class="stat-wheel" style="background-color: rgb(255, 182, 182);"><a id="stat-reported">xx.xx</a></div>
-          <div class="stat-name">Reported</div>
-        </div>
-      </div>
-      <div id="leaderboard-graph">
-        <canvas id="atarChart"></canvas>
-      </div>
-      <ul id="leaderboard-student-list">
-      </ul>
-    </div>
-  </div>
-
-  <input type="search" id="search-bar" placeholder="Search Student" spellcheck="false">
-  <ul class="key" id="degree_feature_key">
-    <li onclick="filterStudents('engineer')"><span class="engineering-square"></span> Engineering</li>
-    <li onclick="filterStudents('medicine')"><span class="medicine-square"></span> Health</li>
-    <li onclick="filterStudents('business')"><span class="business-square"></span> Business</li>
-    <li onclick="filterStudents('law')"><span class="law-square"></span> Law</li>
-    <li onclick="filterStudents('science')"><span class="science-square"></span> Science</li>
-    <li onclick="filterStudents('teaching')"><span class="teaching-square"></span> Education</li>
-    <li onclick="filterStudents('miscellaneous')"><span class="misc-square"></span> Misc</li>
-  </ul>
-  <ul id="university-list">
-    <li class="uni_li" id="uni_uwa">
-      <h2>UWA</h2>
-      <ul>
-      </ul>
-    </li>
-    <li class="uni_li" id="uni_curtin">
-      <h2>Curtin</h2>
-      <ul>
-      </ul>      
-    </li>
-    <li class="uni_li" id="uni_murdoch">
-      <h2>Murdoch</h2>
-      <ul>
-      </ul>
-    </li>
-    <li class="uni_li" id="uni_ecu">
-      <h2>ECU</h2>
-      <ul>
-      </ul>
-    </li>
-    <li class="uni_li" id="uni_notre_dame">
-      <h2>Notre Dame</h2>
-      <ul>
-      </ul>
-    </li>
-    <li class="uni_li" id="uni_not_going">
-      <h2>Not Going</h2>
-      <ul>
-      </ul>      
-    </li>
-    <li class="uni_li" id="uni_unsure">
-      <h2>Unsure</h2>
-      <ul>
-      </ul>      
-    </li>
-    <li class="uni_li" id="uni_out_of_state">
-      <h2>Out of State</h2>
-      <ul>
-      </ul>
-    </li>
-    <li id="dev_info">
-        <a>Version 1.0.0.5 • Leo Timmins • MIT License • Desktop & Mobile functionality • <a href="/developer.html">Release Notes</a></a>
-    </li>
-  </ul>
-</body>
-<script src="/script.js"></script>
+        <input type="search" id="search-bar" placeholder="Search Student" spellcheck="false">
+        <ul class="key" id="degree_feature_key">
+            <li onclick="filterStudents('engineer')"><span class="engineering-square"></span> Engineering</li>
+            <li onclick="filterStudents('medicine')"><span class="medicine-square"></span> Health</li>
+            <li onclick="filterStudents('business')"><span class="business-square"></span> Business</li>
+            <li onclick="filterStudents('law')"><span class="law-square"></span> Law</li>
+            <li onclick="filterStudents('science')"><span class="science-square"></span> Science</li>
+            <li onclick="filterStudents('teaching')"><span class="teaching-square"></span> Education</li>
+            <li onclick="filterStudents('miscellaneous')"><span class="misc-square"></span> Misc</li>
+        </ul>
+        <ul id="university-list">
+            <li class="uni_li" id="uni_uwa">
+                <h2>UWA</h2>
+                <ul>
+                </ul>
+            </li>
+            <li class="uni_li" id="uni_curtin">
+                <h2>Curtin</h2>
+                <ul>
+                </ul>
+            </li>
+            <li class="uni_li" id="uni_murdoch">
+                <h2>Murdoch</h2>
+                <ul>
+                </ul>
+            </li>
+            <li class="uni_li" id="uni_ecu">
+                <h2>ECU</h2>
+                <ul>
+                </ul>
+            </li>
+            <li class="uni_li" id="uni_notre_dame">
+                <h2>Notre Dame</h2>
+                <ul>
+                </ul>
+            </li>
+            <li class="uni_li" id="uni_not_going">
+                <h2>Not Going</h2>
+                <ul>
+                </ul>
+            </li>
+            <li class="uni_li" id="uni_unsure">
+                <h2>Unsure</h2>
+                <ul>
+                </ul>
+            </li>
+            <li class="uni_li" id="uni_out_of_state">
+                <h2>Out of State</h2>
+                <ul>
+                </ul>
+            </li>
+            <li id="dev_info">
+                <a>Version 1.0.0.5 • Leo Timmins • MIT License • Desktop & Mobile functionality • <a href="/developer.html">Release Notes</a></a>
+            </li>
+        </ul>
+    </body>
+    <script src="/script.js"></script>
 </html>
